@@ -24,7 +24,9 @@ services:
             # - POSTGRES_PASSWORD=airflow
             # - POSTGRES_DB=airflow
         volumes:
-            - ./dags:/usr/local/airflow/dags
+            - ./dags:/usr/local/airflow/dags 
+            - ./config:/usr/local/airflow/config
+            - .:/usr/local/airflow
         ports:
             - "8080:8080"
         command: webserver
