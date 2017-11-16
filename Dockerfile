@@ -45,6 +45,11 @@ RUN set -ex \
         vim \
         curl \
         netcat \
+        unixodbc \ 
+        unixodbc-dev \
+        freetds-dev \
+        freetds-bin \
+        tdsodbc \
         locales \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
@@ -58,6 +63,7 @@ RUN set -ex \
     && pip install pyasn1 \
     && pip install apache-airflow[crypto,celery,postgres,ldap,hive,jdbc]==$AIRFLOW_VERSION \
     && pip install celery[redis]==3.1.17 \
+    && pip install httplib2==0.10.3 \
     && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get clean \
     && rm -rf \
@@ -70,6 +76,7 @@ RUN set -ex \
 
 COPY script/entrypoint.sh /entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
+ADD ./requirements.txt /requirements.txt
 
 RUN chown -R airflow: ${AIRFLOW_HOME}
 
