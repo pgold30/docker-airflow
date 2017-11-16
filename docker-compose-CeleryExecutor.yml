@@ -25,6 +25,7 @@ services:
             # - POSTGRES_DB=airflow
         volumes:
             - ./dags:/usr/local/airflow/dags
+            - ./logs:/usr/local/airflow/logs
             - ./requirements.txt:/requirements.txt 
         ports:
             - "8080:8080"
@@ -48,6 +49,7 @@ services:
             - webserver
         volumes:
             - ./dags:/usr/local/airflow/dags
+            - ./logs:/usr/local/airflow/logs
             - ./requirements.txt:/requirements.txt
         environment:
             - LOAD_EX=n

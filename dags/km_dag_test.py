@@ -62,7 +62,7 @@ default_args = {
     'email_on_retry': False
 }
 
-ods_dag = DAG('set_env_var', default_args=default_args)
+ods_dag = DAG('km_dag_test', default_args=default_args)
 
 
 def create_gsheet_and_folder(client_code, brand_code, **kwargs):
